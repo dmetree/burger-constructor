@@ -1,0 +1,14 @@
+
+
+.Item{
+    text-transform: capitalize;
+}
+
+.Li{
+    text-align: left;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
