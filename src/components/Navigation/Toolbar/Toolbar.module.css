@@ -22,3 +22,9 @@
 .Toolbar ul{
     padding: 0;
 }
+
+@media (max-width: 499px){
+    .DesktopOnly {
+        display: none;
+    }
+}
