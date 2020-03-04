@@ -7,7 +7,6 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 class App extends Component {
   
   render() {
-    console.log('Hello world!')
 
     return (
       <div className={gs.App}>
