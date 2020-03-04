@@ -68,6 +68,12 @@ class BurgerBuilder extends Component {
         });
     }
 
+    purchaseContinueHandler = () => {
+        alert('Continue with the Burger!')
+    }
+
+
+
     render() {
         //      Disabling buttons if 0
         //      Converting value pairs to  ||  key: true 
@@ -82,7 +88,11 @@ class BurgerBuilder extends Component {
             <div className={s.bb}>
 
                 <Modal show={this.state.purchasing} modalClosed={this.backdropHandler}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                    <OrderSummary
+                        ingredients={this.state.ingredients}
+                        continue={this.purchaseContinueHandler}
+                        cancel={this.backdropHandler}
+                        price={this.state.totalPrice} />
                 </Modal>
 
                 <Burger ingredients={this.state.ingredients} />

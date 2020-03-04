@@ -7,8 +7,12 @@
 .Li{
     text-align: left;
     text-decoration: none;
+
+    display: flex;
+    justify-content: space-between;
 }
 
-ul{
+.OrderSummary ul{
     list-style: none;
+    padding: 0 10%;
 }

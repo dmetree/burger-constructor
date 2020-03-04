@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './OrderSummary.module.css';
-// import Aux from '../../../hoc/Aux';
+import Button from './../../UI/Button/Button';
 
 const OrderSummary = (props) => {
     const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
             return (
-            <li className={s.Li} key={igKey}>
-                <span className={s.Item}>{igKey}</span>: {props.ingredients[igKey]}
-            </li>
+                <li className={s.Li} key={igKey}>
+                    <div className={s.Item}>{igKey}:</div> <div>{props.ingredients[igKey]}</div>
+                </li>
             );
         });
     return (
@@ -18,9 +18,11 @@ const OrderSummary = (props) => {
             <ul>
                 {ingredientSummary}
             </ul>
+            <p>The total is: <strong>${props.price.toFixed(2)}</strong></p>
             <p>Continue to Checkout?</p>
-            <button>Cancel</button>
-            <button>Continue</button>
+
+            <Button clicked={props.cancel} btnType='Danger'>Cancel</Button>
+            <Button clicked={props.continue} btnType='Success'>Continue</Button>
         </div>
     );
 }
