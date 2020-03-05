@@ -12,7 +12,6 @@ class App extends Component {
       <div className={gs.App}>
         <Layout />
         <BurgerBuilder/>
-        
       </div>
     );
   }
