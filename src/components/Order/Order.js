@@ -26,7 +26,6 @@ const Order = (props) => {
             <p>Price: <strong>USD {props.price.toFixed(2)}</strong></p>
         </div>
     );
-
 };
 
 export default Order;
