@@ -1,6 +1,8 @@
 import React from 'react';
+
 import s from './BuildControls.module.css';
 import BuildControl from './BuildControl/BuildControl';
+
 
 const controls = [
     { label: 'Salad', type: 'salad' },
@@ -30,5 +32,5 @@ const BuildControls = (props) => (
     </div>
 );
 
-export default BuildControls;
 
+export default BuildControls;

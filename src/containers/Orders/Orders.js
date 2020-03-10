@@ -24,7 +24,7 @@ class Orders extends Component {
                         // Turning firebase keys into ids
                     });
                 }
-                console.log(res.data)
+    
                 this.setState({ loading: false, orders: fetchedOrders })
             })
             .catch(err => {
