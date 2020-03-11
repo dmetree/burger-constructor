@@ -10,14 +10,18 @@ import axios from './../../axios-orders';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import withErrorHandler from './../../hoc/withErrorHandler/withErrorHandler';
 import Aux from './../../hoc/Aux';
-import * as actionTypes from './../../store/actions';
+import * as burgerBuilderActions from './../../store/actions/index';
 
 
 
 class BurgerBuilder extends Component {
     state = {
         purchasing: false,
-        loading: false
+        // loading: false
+    }
+
+    componentDidMount (){
+        this.props.onInitIngredients();
     }
 
     purchaseHandler = () => {
@@ -50,7 +54,7 @@ class BurgerBuilder extends Component {
         let orderSummary = null;
         
 
-        let burger = <Spinner />
+        let burger = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />
         if (this.props.ings) {
             burger = (
                 <Aux>
@@ -73,9 +77,9 @@ class BurgerBuilder extends Component {
         }
 
 
-        if (this.state.loading) {
-            orderSummary = <Spinner />
-        }
+        // if (this.state.loading) {
+        //     orderSummary = <Spinner />
+        // }
 
         return (
             <div className={s.bb}>
@@ -92,13 +96,15 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.ingredients, 
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
-        onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
+        onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
+        onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
     }
 }
 
