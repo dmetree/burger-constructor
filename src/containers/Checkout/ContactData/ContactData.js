@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 
 import axios from './../../../axios-orders';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Button from './../../../components/UI/Button/Button';
 import s from './ContactData.module.css';
+import * as actions from './../../../store/actions/index';
 
 class ContactData extends Component {
 
@@ -25,7 +27,7 @@ class ContactData extends Component {
 
     orderHandler = event => {
         event.preventDefault();
-        this.setState({ loading: true });
+        // this.setState({ loading: true });
 
         const order = {
             ingredients: this.props.ings,
@@ -33,13 +35,15 @@ class ContactData extends Component {
             customer: this.state.customer
 
         };
-        axios
-            .post("/orders.json", order)
-            .then(response => {
-                this.setState({ loading: false });
-                this.props.history.push("/");
-            })
-            .catch(error => this.setState({ loading: false }));
+
+        this.props.onOrderBurger(order); 
+        // axios
+        //     .post("/orders.json", order)
+        //     .then(response => {
+        //         this.setState({ loading: false });
+        //         this.props.history.push("/");
+        //     })
+        //     .catch(error => this.setState({ loading: false }));
     };
 
     render() {
@@ -66,5 +70,11 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrderBurger: (orderData) => dispatch(actions.pruchaseBurgerStart(orderData))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
 
