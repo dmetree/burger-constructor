@@ -16,7 +16,7 @@ class App extends Component {
       <div className={gs.App}>
         <Route path='/' component={ Layout } />
         <Route exact path='/' component={ BurgerBuilder } />
-        <Route exact path='/checkout' component={Checkout} />
+        <Route path='/checkout' component={Checkout} />
         <Route exact path='/orders' component={Orders} />
         
       </div>
