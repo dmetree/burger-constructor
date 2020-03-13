@@ -20,8 +20,7 @@ class ContactData extends Component {
             },
            
             deliveryMethod: 'fastest'
-        },
-        loading: false,
+        }
     }
 
 
@@ -41,7 +40,7 @@ class ContactData extends Component {
         //     .post("/orders.json", order)
         //     .then(response => {
         //         this.setState({ loading: false });
-        //         this.props.history.push("/");
+                this.props.history.push("/");
         //     })
         //     .catch(error => this.setState({ loading: false }));
     };
@@ -65,14 +64,15 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price: state.totalPrice
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        loading: state.order.loading
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData) => dispatch(actions.pruchaseBurgerStart(orderData))
+        onOrderBurger: (orderData) => dispatch(actions.pruchaseBurger(orderData))
     };
 };
 

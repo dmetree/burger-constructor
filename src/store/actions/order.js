@@ -23,13 +23,19 @@ export const purchaseBurgerFail = (error) => {
     };
 };
 
+export const pruchaseBurgerStart = () => {
+    return { 
+        type: actionTypes.PURCHASE_BURGER_START
+    };
+};
 
-export const pruchaseBurgerStart = (orderData) => {
+export const pruchaseBurger = (orderData) => {
     return dispatch => {
+        dispatch(pruchaseBurgerStart());
         axios.post("/orders.json", orderData)
             .then(response => {
                 console.log(response.data);
-                dispatch(purchaseBurgerSuccess(response.data, orderData));
+                dispatch(purchaseBurgerSuccess(response.name, orderData));
             })
             .catch(error => {
                 dispatch(purchaseBurgerFail(error));
