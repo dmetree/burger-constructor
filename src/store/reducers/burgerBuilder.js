@@ -39,6 +39,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 ingredients: action.ingredients,
+                totalPrice: 4,
                 error: false
             };
         case actionTypes.FETCH_INGREDIENTS_FAILED:
@@ -52,31 +53,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
-
-
-
-
-// this.setState({ loading: true });
-        // const order = {
-        //     ingredients: this.state.ingredients,
-        //     price: this.state.totalPrice,
-        //     customer: {
-        //         name: 'Bondarenko D',
-        //         address: {
-        //             street: 'Test',
-        //             zipCode: '111111',
-        //             planet: 'Earth'
-        //         },
-        //         email: 'test@test.com'
-        //     },
-        //     deliveryMethod: 'fastest'
-
-        // }
-        // axios.post('/orders.json', order)
-        //     .then(response => {
-        //         this.setState({ loading: false, purchasing: false });
-        //     })
-        //     .catch(error => {
-        //         this.setState({ loading: false, purchasing: false });
-        //         console.log('There was an error')
-        //     });
