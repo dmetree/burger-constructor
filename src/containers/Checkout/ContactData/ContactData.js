@@ -5,28 +5,76 @@ import { connect } from 'react-redux';
 import axios from './../../../axios-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Button from './../../../components/UI/Button/Button';
+import Input from './../../../components/UI/Input/Input';
+import Spinner from './../../../components/UI/Spinner/Spinner';
 import s from './ContactData.module.css';
 import * as actions from './../../../store/actions/index';
 
 class ContactData extends Component {
 
     state = {
-        customer: {
-            name: 'Bondarenko D',
-            email: 'myemail@mail.com',
-            address: {
-                street: 'mystreet',
-                postalCode: '111222'
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Name'
+                },
+                value: ''
             },
-           
-            deliveryMethod: 'fastest'
+
+            street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Street'
+                },
+                value: ''
+            },
+            postalCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Zip Code'
+                },
+                value: ''
+            },
+
+            country: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Country'
+                },
+                value: ''
+            },
+
+
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'E-mail'
+                },
+                value: ''
+            },
+
+            deliveryMethod: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        { value: 'fastest', displayValue: 'Fastest' },
+                        { value: 'cheapest', displayValue: 'Cheapest' },
+                    ]
+                },
+                value: ''
+            }
         }
     }
 
 
     orderHandler = event => {
         event.preventDefault();
-        // this.setState({ loading: true });
 
         const order = {
             ingredients: this.props.ings,
@@ -35,22 +83,57 @@ class ContactData extends Component {
 
         };
 
-        this.props.onOrderBurger(order); 
+        this.props.onOrderBurger(order);
         this.props.history.push("/");
-        
     };
 
+    // Input two way binding 
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedOrderForm = {
+            ...this.state.orderForm
+        };
+        const updatedFormElement = { 
+            ...updatedOrderForm[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        this.setState({orderForm: updatedOrderForm})
+    }
+
     render() {
+        const formElementsArray = [];
+        for (let key in this.state.orderForm) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.orderForm[key]
+            });
+        }
+
+
+        let form = (
+            <form>
+                {formElementsArray.map(formElement => (
+                    <Input 
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    changed={ (event) => this.inputChangedHandler(event, formElement.id)}
+                    />
+                ))}
+                <Button btnType='Success' clicked={this.orderHandler} >Order</Button>
+            </form>
+        );
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
         return (
             <div className={s.ContactData}>
                 <h4>Enter your contact data</h4>
-                <form>
-                    <input className={s.Input} type='text' name='name' placeholder='Your name' />
-                    <input className={s.Input} type='text' name='email' placeholder='Your email' />
-                    <input className={s.Input} type='text' name='street' placeholder='Street' />
-                    <input className={s.Input} type='text' name='postalCode' placeholder='Postal code' />
-                    <Button btnType='Success' clicked={this.orderHandler} >Order</Button>
-                </form>
+                {form}
+
             </div>
         )
     }
