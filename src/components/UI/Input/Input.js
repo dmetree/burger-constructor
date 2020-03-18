@@ -2,19 +2,24 @@ import React from 'react';
 import s from './Input.module.css';
 
 const Input = (props) => {
-
+    
     let inputElement = null;
+    const inputClasses = [s.InputElement];
+
+    if (props.invalid && props.shouldValidate && props.touched){
+        inputClasses.push(s.Invalid);
+    }
 
     switch (props.elementType) {
         case ('input'):
-            inputElement = <input className={s.InputElement}
+            inputElement = <input className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
             break;
 
         case ('textarea'):
-            inputElement = <textarea className={s.InputElement}
+            inputElement = <textarea className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
@@ -23,7 +28,7 @@ const Input = (props) => {
         case ('select'):
             inputElement = (
                 <select
-                    className={s.InputElement}
+                    className={inputClasses.join(' ')}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -33,16 +38,23 @@ const Input = (props) => {
             );
             break;
         default:
-            inputElement = <input className={s.InputElement}
+            inputElement = <input className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
     }
 
+    let validationError = null;
+    if (props.invalid && props.shouldValidate && props.touched){
+        validationError = <p>That doesn't look valid!</p>   
+    }
+    
+
     return (
         <div className={s.Input}>
             <label className={s.Label}> {props.label} </label>
             {inputElement}
+            {validationError}
         </div>
     );
 };
