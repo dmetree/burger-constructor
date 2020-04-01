@@ -11,7 +11,7 @@ const NavItems = (props) => (
         }
         {props.Authenticated 
             ? <NavItem link='/logout'>Logout</NavItem>
-            : <NavItem link='/auth'>LogIn | SignUp</NavItem>
+            : <NavItem link='/auth'>Login | SignUp</NavItem>
         }
        
     </ul>
