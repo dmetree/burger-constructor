@@ -8,7 +8,7 @@ import Button from './../../components/UI/Button/Button';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import * as actions from './../../store/actions/index';
 
-class Auth extends Component {
+class Login extends Component {
 
     state = {
         controls: {
@@ -42,7 +42,7 @@ class Auth extends Component {
                 touched: false
             }
         },
-        isSignup: true
+        isSignup: false
     }
 
     checkValidity = (value, rules) => {
@@ -86,25 +86,7 @@ class Auth extends Component {
         this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
 
-    // switchAuthModeHandler = () => {
-    //     if (window.location.pathname === '/auth'){
-    //         this.setState(prevState => {
-    //             return (
-    //                 { isSignup: !prevState.isSignup }
-    //             );
-    //         })
-    //     } else if (window.location.pathname !== '/auth'){
-    //         this.setState(prevState => {
-    //             return (
-    //                 { isSignup: !prevState.isSignup }
-    //             );
-    //         })
-    //     }
-    // }
-
-
     render() {
-        console.log('Current path is: ' + window.location.pathname);
 
         const formElementsArray = [];
         for (let key in this.state.controls) {
@@ -127,8 +109,8 @@ class Auth extends Component {
             />
         ));
 
-        if (this.props.loading){
-            form = <Spinner/>
+        if (this.props.loading) {
+            form = <Spinner />
         }
 
         let errorMessage = null;
@@ -136,11 +118,11 @@ class Auth extends Component {
             errorMessage = <p>{this.props.error.message}</p>
         }
 
-            
-        
+
+
         let authRedirect = null;
         if (this.props.isAuthenticated) {
-            authRedirect = <Redirect to='/'/>
+            authRedirect = <Redirect to='/' />
         }
 
         return (
@@ -178,4 +160,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

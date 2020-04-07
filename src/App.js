@@ -9,6 +9,7 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout';
 import Orders from './containers/Orders/Orders';
 import Auth from './containers/Auth/Auth';
+import Login from './containers/Auth/Login';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
@@ -26,6 +27,7 @@ class App extends Component {
       <Aux>
         <Route path='/' component={Layout} />
         <Route path='/auth' component={Auth} />
+        <Route path='/login' component={Login} />
         <Route exact path='/' component={BurgerBuilder} />
         <Redirect to='/' />
       </Aux>
