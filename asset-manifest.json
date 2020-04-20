@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/github.io/burger-constructor/static/css/main.e234ed16.chunk.css",
+    "main.js": "/github.io/burger-constructor/static/js/main.623f21c0.chunk.js",
+    "main.js.map": "/github.io/burger-constructor/static/js/main.623f21c0.chunk.js.map",
+    "runtime-main.js": "/github.io/burger-constructor/static/js/runtime-main.d4574135.js",
+    "runtime-main.js.map": "/github.io/burger-constructor/static/js/runtime-main.d4574135.js.map",
+    "static/js/2.3be3ac4f.chunk.js": "/github.io/burger-constructor/static/js/2.3be3ac4f.chunk.js",
+    "static/js/2.3be3ac4f.chunk.js.map": "/github.io/burger-constructor/static/js/2.3be3ac4f.chunk.js.map",
+    "index.html": "/github.io/burger-constructor/index.html",
+    "precache-manifest.2a1a8700ebe630658ba9943e45e0ea10.js": "/github.io/burger-constructor/precache-manifest.2a1a8700ebe630658ba9943e45e0ea10.js",
+    "service-worker.js": "/github.io/burger-constructor/service-worker.js",
+    "static/css/main.e234ed16.chunk.css.map": "/github.io/burger-constructor/static/css/main.e234ed16.chunk.css.map",
+    "static/js/2.3be3ac4f.chunk.js.LICENSE.txt": "/github.io/burger-constructor/static/js/2.3be3ac4f.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/github.io/burger-constructor/static/media/logo.b8503d26.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4574135.js",
+    "static/js/2.3be3ac4f.chunk.js",
+    "static/css/main.e234ed16.chunk.css",
+    "static/js/main.623f21c0.chunk.js"
+  ]
+}
