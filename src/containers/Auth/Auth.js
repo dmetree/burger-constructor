@@ -87,16 +87,17 @@ class Auth extends Component {
     }
 
     // switchAuthModeHandler = () => {
+    //     console.log('Current path is: ' + window.location.pathname)
     //     if (window.location.pathname === '/auth'){
     //         this.setState(prevState => {
     //             return (
-    //                 { isSignup: !prevState.isSignup }
+    //                 { isSignup: true }
     //             );
     //         })
-    //     } else if (window.location.pathname !== '/auth'){
+    //     } else if (window.location.pathname === '/login'){
     //         this.setState(prevState => {
     //             return (
-    //                 { isSignup: !prevState.isSignup }
+    //                 { isSignup: false }
     //             );
     //         })
     //     }
@@ -104,7 +105,7 @@ class Auth extends Component {
 
 
     render() {
-        console.log('Current path is: ' + window.location.pathname);
+        
 
         const formElementsArray = [];
         for (let key in this.state.controls) {

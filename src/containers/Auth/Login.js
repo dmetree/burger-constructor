@@ -134,11 +134,6 @@ class Login extends Component {
                     {errorMessage}
                     <Button btnType="Success">DONE</Button>
                 </form>
-                {/* <Button
-                    clicked={this.switchAuthModeHandler}
-                    btnType="Danger">{this.state.isSignup
-                        ? 'I dont have an account and I want to Sign up'
-                        : 'I have an account and I want to Log In'}</Button> */}
             </div>
         );
     }
